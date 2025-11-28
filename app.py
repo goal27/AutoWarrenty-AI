@@ -2,6 +2,10 @@ import streamlit as st
 import openai
 import os
 from dotenv import load_dotenv
+from openai import OpenAI
+import streamlit as st
+
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 from services.vision_ocr import extract_text_from_image
 from services.warranty_extract import extract_warranty_structured
