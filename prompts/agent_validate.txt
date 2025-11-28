@@ -1,0 +1,5 @@
+Validate all extracted fields:
+- Normalize dates into ISO
+- Clean currency
+- Calculate warranty duration
+Return corrected values.

@@ -1,0 +1,4 @@
+Generate a 2–4 sentence human summary explaining:
+- What was extracted
+- Any missing fields
+- Recommended user steps

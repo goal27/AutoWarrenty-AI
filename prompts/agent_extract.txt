@@ -1,0 +1,1 @@
+Extract raw data from OCR text. Do not infer or rewrite. Return cleaned text only.
