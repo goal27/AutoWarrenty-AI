@@ -1,7 +1,6 @@
 import streamlit as st
 import openai
 import os
-from dotenv import load_dotenv
 from openai import OpenAI
 import streamlit as st
 
@@ -16,10 +15,6 @@ from database import database
 import services.problem_analyzer # Import the problem_analyzer module
 import uuid
 from datetime import datetime
-
-# Load environment variables
-load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # Load prompts
 with open("prompts/system_warranty_agent.txt", "r") as f:
@@ -78,8 +73,8 @@ else:
                 st.error("Please upload an image or paste text.")
                 st.stop()
 
-            current_date = datetime.now().strftime("%Y-%m-%d")
             with st.spinner("Analyzing warranty details..."):
+                current_date = datetime.now().strftime("%Y-%m-%d") # Ensure current_date is always fresh
                 result = extract_warranty_structured(ocr_text, SYSTEM_PROMPT, current_date)
 
             if result:
