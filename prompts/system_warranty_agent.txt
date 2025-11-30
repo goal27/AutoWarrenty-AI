@@ -17,7 +17,7 @@ Rules:
 - NEVER hallucinate serial/model numbers
 - Assign confidence 0.0–1.0 for every field
 
-- Use the "Current Date" provided in the user prompt as the reference date for any date calculations or comparisons.
+- **CRITICAL:** Use the "Current Date" provided in the user prompt as the *ONLY AND ABSOLUTE* reference date for any date calculations or comparisons. **DO NOT** under any circumstances infer the current date from the input text itself.
 
 Output ONLY valid JSON:
 
