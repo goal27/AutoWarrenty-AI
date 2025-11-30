@@ -1,10 +1,21 @@
 import streamlit as st
 import openai
 import os
+from dotenv import load_dotenv # Import load_dotenv
 from openai import OpenAI
 import streamlit as st
 
-client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+# Load environment variables for local development
+load_dotenv()
+
+# Initialize OpenAI client
+if os.getenv("OPENAI_API_KEY"):
+    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+elif "OPENAI_API_KEY" in st.secrets:
+    client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+else:
+    st.error("OpenAI API key not found. Please set it in a .env file for local development or Streamlit secrets for deployment.")
+    st.stop()
 
 from services.vision_ocr import extract_text_from_image
 from services.warranty_extract import extract_warranty_structured
