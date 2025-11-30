@@ -26,6 +26,7 @@ from database import database
 import services.problem_analyzer # Import the problem_analyzer module
 import uuid
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 # Load prompts
 with open("prompts/system_warranty_agent.txt", "r") as f:
@@ -85,7 +86,7 @@ else:
                 st.stop()
 
             with st.spinner("Analyzing warranty details..."):
-                current_date = datetime.now().strftime("%Y-%m-%d") # Ensure current_date is always fresh
+                current_date = datetime.now(ZoneInfo("America/New_York")).strftime("%Y-%m-%d") # Ensure date uses US timezone
                 result = extract_warranty_structured(ocr_text, SYSTEM_PROMPT, current_date)
 
             if result:

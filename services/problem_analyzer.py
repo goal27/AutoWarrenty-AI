@@ -2,12 +2,13 @@ import openai
 import json
 import os
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 def analyze_problem_with_warranty(problem_description, warranty_details):
     with open("prompts/agent_problem_analysis.txt", "r") as f:
         system_prompt = f.read()
 
-    current_date = datetime.now().strftime("%Y-%m-%d")
+    current_date = datetime.now(ZoneInfo("America/New_York")).strftime("%Y-%m-%d")
     user_content = (
         f"Problem Description: {problem_description}\n\n"
         f"Warranty Details: {json.dumps(warranty_details, indent=2)}\n\n"
