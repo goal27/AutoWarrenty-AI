@@ -1,12 +1,18 @@
 import openai
 import json
 import os
+from datetime import datetime
 
 def analyze_problem_with_warranty(problem_description, warranty_details):
     with open("prompts/agent_problem_analysis.txt", "r") as f:
         system_prompt = f.read()
 
-    user_content = f"Problem Description: {problem_description}\n\nWarranty Details: {json.dumps(warranty_details, indent=2)}"
+    current_date = datetime.now().strftime("%Y-%m-%d")
+    user_content = (
+        f"Problem Description: {problem_description}\n\n"
+        f"Warranty Details: {json.dumps(warranty_details, indent=2)}\n\n"
+        f"Current Date: {current_date}"
+    )
 
     try:
         response = openai.chat.completions.create(
